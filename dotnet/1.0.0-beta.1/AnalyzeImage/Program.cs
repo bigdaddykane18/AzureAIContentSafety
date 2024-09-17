@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Azure.AI.ContentSafety;
 
 namespace Azure.AI.ContentSafety.Dotnet.Sample
@@ -45,3 +45,35 @@ namespace Azure.AI.ContentSafety.Dotnet.Sample
         }
     }
 }
+Console.WriteLine("Hate severity: {0}", response.Value.HateResult?.Severity ?? 0);
+Console.WriteLine("Hate category: {0}", response.Value.HateResult?.Category ?? "None");
+Speichern der Ergebnisse in einer Datei: Du könntest die Ergebnisse in einer Datei speichern, um sie später zu analysieren:
+
+using (StreamWriter writer = new StreamWriter("analyze_results.txt"))
+{
+    writer.WriteLine("Hate severity: {0}", response.Value.HateResult?.Severity ?? 0);
+    writer.WriteLine("SelfHarm severity: {0}", response.Value.SelfHarmResult?.Severity ?? 0);
+    writer.WriteLine("Sexual severity: {0}", response.Value.SexualResult?.Severity ?? 0);
+    writer.WriteLine("Violence severity: {0}", response.Value.ViolenceResult?.Severity ?? using System.Timers;
+
+class Program
+{
+    private static Timer timer;
+
+    static void Main()
+    {
+        timer = new Timer(60000); // Set the interval to 60 seconds
+        timer.Elapsed += OnTimedEvent;
+        timer.AutoReset = true;
+        timer.Enabled = true;
+
+        Console.WriteLine("Press [Enter] to exit the program.");
+        Console.ReadLine();
+    }
+
+    private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+    {
+        ContentSafetySampleAnalyzeImage.AnalyzeImage();
+    }
+}
+
